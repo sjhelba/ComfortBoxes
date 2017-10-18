@@ -4,8 +4,8 @@ import React from 'react';
 export default function Pay () {
   return (
     <form action="/charge" method="post" id="payment-form">
-    <div class="form-row">
-      <label for="card-element">
+    <div className="form-row">
+      <label htmlFor="card-element">
         Credit or debit card
       </label>
       <div id="card-element">
