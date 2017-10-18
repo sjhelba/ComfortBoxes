@@ -50,8 +50,12 @@ export class Navbar extends Component {
           {(!this.props.location.pathname.includes('buildbox') && !this.props.location.pathname.includes('products')) &&
             <Link to='/buildbox/Box' onClick={this.createABox}>BUILD MY BOX</Link>
           }
-          <Link to='/cart'>CART</Link>
-          <Link to='/checkout'>CHECKOUT</Link>
+          {(!this.props.location.pathname.includes('buildbox') && !this.props.location.pathname.includes('products')) &&
+            <Link to='/cart'>CART</Link>
+          }
+          {(!this.props.location.pathname.includes('buildbox') && !this.props.location.pathname.includes('products')) &&
+            <Link to='/checkout'>CHECKOUT</Link>
+          }
           {
             currentUser.email
               ? <a href='#' onClick={handleLogout}>SIGN OUT</a>
