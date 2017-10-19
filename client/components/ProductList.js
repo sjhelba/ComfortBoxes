@@ -72,8 +72,8 @@ class Products extends Component {
                 <button name={product.id} onClick={this.addAProductToBox}>Add</button>
                 <Notification
                   isActive={this.state.showSuccessNotification}
-                  message={`Successfully added ${product.title} to your box`}
-                />
+                  message="Item successfully added to your box"
+              />
               </div>
             )
           })
@@ -82,3 +82,4 @@ class Products extends Component {
     )
   }
 }
+
