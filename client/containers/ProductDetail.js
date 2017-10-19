@@ -5,10 +5,14 @@ import { fetchProduct } from '../store/product';
 import { fetchCategories } from '../store/categories';
 import { connect } from 'react-redux';
 import { CategoryList } from '../components'
+import { Notification } from 'react-notification'
 
 export class ProductDetail extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      showSuccessNotification: false
+    }
     this.addProductToCart = this.addProductToCart.bind(this)
   }
 
@@ -19,29 +23,31 @@ export class ProductDetail extends React.Component {
   }
 
   addProductToCart (event) {
-    console.log('product is', this.props.product)
     const shoppingCart = getCopyOfTempShoppingCart()
     const currentBox = localStorage.getItem('currentBoxId')
     const categoryTitle = this.props.product.categories[0].title
-    console.log(categoryTitle)
-    console.log(localStorage.getItem('currentBoxId'))
     if (shoppingCart[currentBox] && categoryTitle === 'Box'){
       alert('Only one box per box!')
     } else if ((shoppingCart[currentBox] && shoppingCart[currentBox].length <= 10) || categoryTitle === 'Box') {
       addProductToBox(event.target.name)
-      alert('Successfully added ' + this.props.product.title + ' to your box in progress. Click on the links above to explore some more treasures for your senses!')
+      this.setState({showSuccessNotification: true});
+      setTimeout(() => {
+        this.setState({showSuccessNotification: false});
+      }, 3000);
     } else if (shoppingCart[currentBox] && shoppingCart[currentBox].length > 10) {
         alert('Only 10 items may be selected per box (excluding box itself). Create another box in order to select more items!')
     } else {
       alert('Must select a box before other items!');
-    console.log('shopping cart: ', getCopyOfTempShoppingCart())
     }
   }
 
   render () {
-    console.log("Render")
     return (
       <div id='detailsPage' className='productList'>
+        <Notification
+          isActive={this.state.showSuccessNotification}
+          message={`Successfully added ${this.props.product.title} to your box`}
+        />
         <CategoryList categories={this.props.categories} />
         <div key={this.props.product.id} className='product'>
           <img src={this.props.product.img}/>
