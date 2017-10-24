@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 
 import { TestPage, OrderComplete } from './components'
-import { BuildBox, SignUp, Cart, Checkout, Home, Navbar, Admin, ProductDetail } from './containers'
+import { BuildBox, SignUp, Cart, Checkout, Home, Navbar, Admin, ProductDetail, Pay } from './containers'
 
 /**
  * COMPONENT
@@ -23,7 +23,8 @@ export default function App () {
           <Route path='/buildbox' component={BuildBox} />
           <Route path='/products/:id' component={ProductDetail} />
           <Route path='/login' component={SignUp} />
-          <Route path='/' component={Home}/>
+          <Route path='/pay' component={Pay} />
+          <Route path='/' component={Home} />
         </Switch>
       </div>
     </Router>

@@ -91,7 +91,7 @@ export class Checkout extends Component {
   render() {
     if (this.state.submitted) {
       return (
-        <Redirect to={'/OrderComplete'} />
+        <Redirect to={'/Pay'} />
       )
     }
     return (
