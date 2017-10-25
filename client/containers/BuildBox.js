@@ -29,13 +29,14 @@ export class BuildBox extends Component {
     this.state = {
       redirectToCart: false,
       redirectToHome: false,
-      redirectToBuildBox: false
+      redirectToBuildBox: false,
     }
   }
 
   componentDidMount () {
     // fetch categories from DB
-    this.props.fetchCategories();
+    this.props.getMeCategories();
+    console.log("Props", this.props)
   }
 
   completeBox (redirectTo) {
@@ -56,6 +57,7 @@ export class BuildBox extends Component {
   }
 
   render () {
+
     if (this.state.redirectToCart) {
       return (
         <Redirect to={'/Cart'} />
@@ -91,7 +93,20 @@ function mapStateToProps(state){
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getMeCategories: () => {
+      dispatch(fetchCategories())
+    }
+  }
+}
+
+// export default connect(
+//   mapStateToProps,
+//   {fetchCategories}
+// )(BuildBox);
+
 export default connect(
   mapStateToProps,
-  {fetchCategories}
+  mapDispatchToProps
 )(BuildBox);
