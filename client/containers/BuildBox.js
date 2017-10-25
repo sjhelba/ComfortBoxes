@@ -21,7 +21,6 @@ import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart'
  *
  */
 
-//Need to add logic to default to 'Box' category when clicking 'BuildBox'
 
 export class BuildBox extends Component {
   constructor(props) {
