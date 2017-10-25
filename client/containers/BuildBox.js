@@ -6,6 +6,7 @@ import {
   ProductList,
   CategoryList,
 } from '../components';
+import { NextSidebar } from '../containers'
 import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart'
 
 //BUILD BOX CONTAINER
@@ -29,7 +30,8 @@ export class BuildBox extends Component {
     this.state = {
       redirectToCart: false,
       redirectToHome: false,
-      redirectToBuildBox: false
+      redirectToBuildBox: false,
+      currentCategory: this.props.location.pathname.slice(10),
     }
   }
 
@@ -74,6 +76,7 @@ export class BuildBox extends Component {
 
     return (
       <div id='buildboxPage'>
+        {/*<NextSidebar categories={this.props.categories} currentCategory={this.state.currentCategory} />*/}
         <CategoryList categories={this.props.categories} />
         <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
         <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
