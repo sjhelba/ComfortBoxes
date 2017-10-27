@@ -4,7 +4,8 @@ export {default as OrderList } from './OrderList';
 export {default as UserList } from './UserList';
 export {default as ProductList } from './ProductList';
 export {default as OrderComplete } from './OrderComplete';
-
+export {default as NextSidebar } from './NextSidebar';
+export {default as PrevSidebar } from './PrevSidebar';
 export {default as AuthForm } from './AuthForm';
 
 //create local storage empty shopping cart
