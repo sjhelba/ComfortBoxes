@@ -6,6 +6,7 @@ import {
   ProductList,
   CategoryList,
 } from '../components';
+import { NextSidebar } from '../containers'
 import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart'
 
 //BUILD BOX CONTAINER
@@ -20,7 +21,6 @@ import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart'
  *
  */
 
-//Need to add logic to default to 'Box' category when clicking 'BuildBox'
 
 export class BuildBox extends Component {
   constructor(props) {
@@ -30,13 +30,13 @@ export class BuildBox extends Component {
       redirectToCart: false,
       redirectToHome: false,
       redirectToBuildBox: false,
+      // currentCategory: this.props.location.pathname.slice(10),
     }
   }
 
   componentDidMount () {
     // fetch categories from DB
-    this.props.getMeCategories();
-    console.log("Props", this.props)
+    this.props.fetchCategories();
   }
 
   completeBox (redirectTo) {
@@ -76,6 +76,7 @@ export class BuildBox extends Component {
 
     return (
       <div id='buildboxPage'>
+        {/*<NextSidebar categories={this.props.categories} currentCategory={this.state.currentCategory} />*/}
         <CategoryList categories={this.props.categories} />
         <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
         <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
@@ -93,20 +94,7 @@ function mapStateToProps(state){
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getMeCategories: () => {
-      dispatch(fetchCategories())
-    }
-  }
-}
-
-// export default connect(
-//   mapStateToProps,
-//   {fetchCategories}
-// )(BuildBox);
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {fetchCategories}
 )(BuildBox);
