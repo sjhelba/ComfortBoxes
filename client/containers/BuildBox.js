@@ -5,8 +5,10 @@ import { fetchCategories } from '../store/categories';
 import {
   ProductList,
   CategoryList,
+  NextSidebar,
+  PrevSidebar,
 } from '../components';
-import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart'
+import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart';
 
 //BUILD BOX CONTAINER
 /**
@@ -28,7 +30,7 @@ export class BuildBox extends Component {
     this.state = {
       redirectToCart: false,
       redirectToHome: false,
-      redirectToBuildBox: false
+      redirectToBuildBox: false,
     }
   }
 
@@ -55,6 +57,12 @@ export class BuildBox extends Component {
   }
 
   render () {
+
+    const currentCategory = this.props.location.pathname.slice(10)
+    const categoryTitles = this.props.categories.map(cat => cat.title)
+    const nextCategory = categoryTitles[categoryTitles.indexOf(currentCategory) + 1]
+    const prevCategory = categoryTitles[categoryTitles.indexOf(currentCategory) - 1]
+
     if (this.state.redirectToCart) {
       return (
         <Redirect to={'/Cart'} />
@@ -71,14 +79,21 @@ export class BuildBox extends Component {
       )
     }
 
+
     return (
       <div id='buildboxPage'>
         <CategoryList categories={this.props.categories} />
+        {prevCategory &&
+          <PrevSidebar prevCategory={prevCategory} />
+        }
         <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
         <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
         <ProductList categories={this.props.categories} />
         <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
         <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
+        {nextCategory &&
+          <NextSidebar nextCategory={nextCategory} />
+        }
       </div>
     );
   }
