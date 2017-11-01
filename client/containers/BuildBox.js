@@ -82,7 +82,7 @@ export class BuildBox extends Component {
 
     return (
       <div id='buildboxPage'>
-        <CategoryList categories={this.props.categories} />
+        <CategoryList current={currentCategory} categories={this.props.categories} />
         {prevCategory &&
           <PrevSidebar prevCategory={prevCategory} />
         }
