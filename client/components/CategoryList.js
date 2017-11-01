@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function CategoryList ({categories}) {
 
   return (
-    <div className='categoryList'>
+    <div style={{marginTop: '10px', marginBottom: '50px'}} className='categoryList'>
       {
         categories.map((category, i) =>
           <Link
