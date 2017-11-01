@@ -50,6 +50,7 @@ export class ProductDetail extends React.Component {
           isActive={this.state.showSuccessNotification}
           message={`Successfully added ${this.props.product.title} to your box`}
         />
+        <CategoryList current={currentCategory} categories={this.props.categories} />
         <div key={this.props.product.id} className='product'>
           <img src={this.props.product.img}/>
           <h1>{this.props.product.title}</h1>

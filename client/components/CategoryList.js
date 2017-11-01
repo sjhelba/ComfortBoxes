@@ -12,7 +12,7 @@ export default function CategoryList ({categories, current}) {
     <div className='categoryList'>
       {
         categories.map((category, i) => {
-          if (current.toLowerCase() === category.title.toLowerCase()) {
+          if (current && current.toLowerCase() === category.title.toLowerCase()) {
             return (
               <Link
                 style={{padding: '5px', border: 'solid rgba(128, 128, 128, 0.12)', borderRadius: '10px'}}
