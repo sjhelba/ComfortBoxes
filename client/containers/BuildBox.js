@@ -81,19 +81,33 @@ export class BuildBox extends Component {
 
 
     return (
-      <div id='buildboxPage'>
+      <div id="buildboxPage">
         <CategoryList categories={this.props.categories} />
+        <div className="btnGroup">
+          <button onClick={() => this.completeBox('toHome')}>Add Box to Cart & Continue Shopping</button>
+          <button onClick={() => this.completeBox('toCart')}>Add Box to Cart & Go to Cart</button>
+        </div>
+        <div className="btnGroup">
         {prevCategory &&
           <PrevSidebar prevCategory={prevCategory} />
         }
-        <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
-        <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
-        <ProductList categories={this.props.categories} />
-        <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
-        <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
         {nextCategory &&
           <NextSidebar nextCategory={nextCategory} />
         }
+      </div>
+        <ProductList categories={this.props.categories} />
+        <div className="btnGroup">
+          <button onClick={() => this.completeBox('toHome')}>Add Box to Cart & Continue Shopping</button>
+          <button onClick={() => this.completeBox('toCart')}>Add Box to Cart & Go to Cart</button>
+        </div>
+        <div className="btnGroup">
+          {prevCategory &&
+            <PrevSidebar prevCategory={prevCategory} />
+          }
+          {nextCategory &&
+            <NextSidebar nextCategory={nextCategory} />
+          }
+        </div>
       </div>
     );
   }
