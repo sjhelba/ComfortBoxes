@@ -37,20 +37,9 @@ const BoxItem = db.define('boxItem', {
 })
 //BoxItem table has 2 foreign keys: order_id and product_id, but is not referenced in other tables
 
-
-
-
-/**
- * instanceMethods
- */
-
-
 /**
  * classMethods
  */
-
-
-
 
 
 /* When the same item is added to a box more than once,
@@ -82,8 +71,5 @@ BoxItem.storeOrderedItems = function (arrayOfProductIds, order, boxId) {
   return order;
 }
 
-/**
- * hooks
- */
 
 module.exports = BoxItem;

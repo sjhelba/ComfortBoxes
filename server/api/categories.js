@@ -8,9 +8,6 @@ router.get('/', (req, res, next) => {
   console.log('Made it to Category GET')
   Category.findAll({
     include: [{all: true}]
-    // [
-    //   {model: Product}
-    // ]
   }
 
     )

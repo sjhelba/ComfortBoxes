@@ -14,7 +14,6 @@ export class Cart extends Component {
     this.props.thunkGetCurrentCart(getCopyOfShoppingCart());
   }
 
-  //note that as of yet, neither deleteBox or deleteProduct are re-rendering the page properly :( have to refresh. Fix this.
   deleteBox (boxId) {
     removeBoxFromShoppingCart(boxId);
     this.props.thunkGetCurrentCart(getCopyOfShoppingCart());

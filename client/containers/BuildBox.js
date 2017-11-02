@@ -25,7 +25,7 @@ import history from '../history'
  */
 
 
- //TESTING:
+
  const customModalStyle = {
   content: {
     top: '50%',
@@ -48,11 +48,10 @@ export class BuildBox extends Component {
     this.completeBox = this.completeBox.bind(this)
 
     this.state = {
-      seeModal: false,
-      modalIsOpen: false  //test
+      modalIsOpen: false
     }
 
-    //TESTING:
+
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -63,8 +62,6 @@ export class BuildBox extends Component {
   }
 
   completeBox (redirectTo) {
-    // this.setState({seeModal: true});
-    // IN BTWN
     const tempCart = getCopyOfTempShoppingCart();
     const current = localStorage.getItem('currentBoxId')
     if (tempCart[current]) {
@@ -80,7 +77,6 @@ export class BuildBox extends Component {
   }
 
 
-    //TEST:
   openModal() {
     this.setState({modalIsOpen: true});
   }
