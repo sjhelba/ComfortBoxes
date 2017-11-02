@@ -29,7 +29,9 @@
       color: $linkHover;
     }
   }
-
+  .btnGroup {
+    display: inline;
+  }
   .product {
     width: 200px;
     margin: 20px;

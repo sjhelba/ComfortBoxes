@@ -10,7 +10,9 @@ import { Link } from 'react-router-dom';
 export default function NextSidebar ({nextCategory}) {
   return (
     <div id='nextSidebar'>
-      <Link to={`/buildbox/${nextCategory}`}>Next</Link>
+      <Link to={`/buildbox/${nextCategory}`}>
+        <button id="nextBtn">Next</button>
+      </Link>
     </div>
   );
 }

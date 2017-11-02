@@ -10,7 +10,9 @@ import { Link } from 'react-router-dom';
 export default function PrevSidebar ({prevCategory}) {
   return (
     <div id='prevSidebar'>
-      <Link to={`/buildbox/${prevCategory}`}>Previous</Link>
+      <Link to={`/buildbox/${prevCategory}`}>
+        <button id="prevBtn">Previous</button>
+      </Link>
     </div>
   );
 }
