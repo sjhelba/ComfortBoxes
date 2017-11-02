@@ -43,6 +43,7 @@ export class ProductDetail extends React.Component {
   }
 
   render () {
+
     return (
       <div id='detailsPage' className='productList'>
         <Notification
@@ -51,6 +52,7 @@ export class ProductDetail extends React.Component {
         />
         <CategoryList categories={this.props.categories} />
         <button style={{alignContent: 'left'}} onClick={history.goBack}>Back</button>
+
         <div key={this.props.product.id} className='product'>
           <img src={this.props.product.img}/>
           <h1>{this.props.product.title}</h1>
