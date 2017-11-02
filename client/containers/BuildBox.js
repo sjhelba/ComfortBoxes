@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 import { fetchCategories } from '../store/categories';
 import Modal from 'react-modal';
 import {
@@ -10,6 +9,8 @@ import {
   PrevSidebar,
 } from '../components';
 import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart';
+import history from '../history'
+
 
 //BUILD BOX CONTAINER
 /**
@@ -45,10 +46,8 @@ export class BuildBox extends Component {
   constructor(props) {
     super(props)
     this.completeBox = this.completeBox.bind(this)
+
     this.state = {
-      redirectToCart: false,
-      redirectToHome: false,
-      redirectToBuildBox: false,
       seeModal: false,
       modalIsOpen: false  //test
     }
@@ -71,9 +70,9 @@ export class BuildBox extends Component {
     if (tempCart[current]) {
       completeBox()
       if (redirectTo === 'toHome') {
-        this.setState({ redirectToHome: true });
+        history.push('/');
       } else if (redirectTo === 'toCart') {
-        this.setState({ redirectToCart: true });
+        history.push('/cart');
       }
     } else {
       alert('Cannot complete box without a box product selected')
@@ -81,14 +80,14 @@ export class BuildBox extends Component {
   }
 
 
-  //TEST:
-openModal() {
-  this.setState({modalIsOpen: true});
-}
+    //TEST:
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
 
-closeModal() {
-  this.setState({modalIsOpen: false});
-}
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
 
 
   render () {
@@ -97,22 +96,6 @@ closeModal() {
     const categoryTitles = this.props.categories.map(cat => cat.title)
     const nextCategory = categoryTitles[categoryTitles.indexOf(currentCategory) + 1]
     const prevCategory = categoryTitles[categoryTitles.indexOf(currentCategory) - 1]
-
-    if (this.state.redirectToCart) {
-      return (
-        <Redirect to={'/Cart'} />
-      )
-    }
-    if (this.state.redirectToHome) {
-      return (
-        <Redirect to={'/'} />
-      )
-    }
-    if (this.state.redirectToHome) {
-      return (
-        <Redirect to={'/'} />
-      )
-    }
 
     return (
       <div id="buildboxPage">
