@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
  */
 export default function CategoryList ({categories, current}) {
 
-  console.log(current)
   return (
     <div style={{marginTop: '10px', marginBottom: '50px'}} className='categoryList'>
       {

@@ -20,7 +20,6 @@ export class Cart extends Component {
   }
 
   deleteProduct (productId, boxId, category) {
-    console.log('category: ', category)
     if (category !== 'Box'){
       removeOneInstanceOfProductFromBox(productId, boxId);this.props.thunkGetCurrentCart(getCopyOfShoppingCart());
     } else {
