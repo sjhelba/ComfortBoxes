@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom'
 import { fetchCategories } from '../store/categories';
+import Modal from 'react-modal';
 import {
   ProductList,
   CategoryList,
@@ -9,6 +9,8 @@ import {
   PrevSidebar,
 } from '../components';
 import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart';
+import history from '../history'
+
 
 //BUILD BOX CONTAINER
 /**
@@ -23,15 +25,36 @@ import { getCopyOfTempShoppingCart, completeBox } from '../shoppingCart';
  */
 
 
+ //TESTING:
+ const customModalStyle = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    fontSize: '18px',
+    lineHeight: '1.6',
+    fontWeight: '400',
+    fontFamily: 'sans-serif'
+  }
+};
+
+
 export class BuildBox extends Component {
   constructor(props) {
     super(props)
     this.completeBox = this.completeBox.bind(this)
+
     this.state = {
-      redirectToCart: false,
-      redirectToHome: false,
-      redirectToBuildBox: false,
+      seeModal: false,
+      modalIsOpen: false  //test
     }
+
+    //TESTING:
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount () {
@@ -40,21 +63,32 @@ export class BuildBox extends Component {
   }
 
   completeBox (redirectTo) {
+    // this.setState({seeModal: true});
+    // IN BTWN
     const tempCart = getCopyOfTempShoppingCart();
     const current = localStorage.getItem('currentBoxId')
     if (tempCart[current]) {
       completeBox()
       if (redirectTo === 'toHome') {
-        this.setState({ redirectToHome: true });
-      // if (redirectTo === 'toBuildBox') {
-      //   this.setState({ redirectToBuildBox: true });
+        history.push('/');
       } else if (redirectTo === 'toCart') {
-        this.setState({ redirectToCart: true });
+        history.push('/cart');
       }
     } else {
       alert('Cannot complete box without a box product selected')
     }
   }
+
+
+    //TEST:
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
 
   render () {
 
@@ -63,37 +97,38 @@ export class BuildBox extends Component {
     const nextCategory = categoryTitles[categoryTitles.indexOf(currentCategory) + 1]
     const prevCategory = categoryTitles[categoryTitles.indexOf(currentCategory) - 1]
 
-    if (this.state.redirectToCart) {
-      return (
-        <Redirect to={'/Cart'} />
-      )
-    }
-    if (this.state.redirectToHome) {
-      return (
-        <Redirect to={'/'} />
-      )
-    }
-    if (this.state.redirectToHome) {
-      return (
-        <Redirect to={'/'} />
-      )
-    }
-
-
     return (
-      <div id='buildboxPage'>
-        <CategoryList current={currentCategory} categories={this.props.categories} />
-        {prevCategory &&
-          <PrevSidebar prevCategory={prevCategory} />
-        }
-        <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
-        <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
+      <div id="buildboxPage">
+        <CategoryList categories={this.props.categories} />
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal}
+          style={customModalStyle}
+        >
+          <div>Add Box to Cart and...</div>
+            <button onClick={() => this.completeBox('toHome')}>Continue Shopping</button>
+            <button onClick={() => this.completeBox('toCart')}>Go to Cart</button>
+            <button onClick={this.closeModal}>Oops.. Back to Box</button>
+        </Modal>
+        <button onClick={this.openModal}>Add Completed Box to Cart</button>
+        <div className="btnGroup">
+          {prevCategory &&
+            <PrevSidebar prevCategory={prevCategory} />
+          }
+          {nextCategory &&
+            <NextSidebar nextCategory={nextCategory} />
+          }
+        </div>
         <ProductList categories={this.props.categories} />
-        <button onClick={() => this.completeBox('toHome')}>Add Box to Cart and Continue Shopping</button>
-        <button onClick={() => this.completeBox('toCart')}>Add Box to Cart and Go to Cart</button>
-        {nextCategory &&
-          <NextSidebar nextCategory={nextCategory} />
-        }
+        <div className="btnGroup">
+          {prevCategory &&
+            <PrevSidebar prevCategory={prevCategory} />
+          }
+          {nextCategory &&
+            <NextSidebar nextCategory={nextCategory} />
+          }
+        </div>
+        <button onClick={this.openModal}>Add Completed Box to Cart</button>
       </div>
     );
   }
