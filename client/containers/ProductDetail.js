@@ -6,6 +6,7 @@ import { fetchCategories } from '../store/categories';
 import { connect } from 'react-redux';
 import { CategoryList } from '../components'
 import { Notification } from 'react-notification'
+import history from '../history'
 
 export class ProductDetail extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export class ProductDetail extends React.Component {
   }
 
   render () {
+
     return (
       <div id='detailsPage' className='productList'>
         <Notification
@@ -49,6 +51,8 @@ export class ProductDetail extends React.Component {
           message={`Successfully added ${this.props.product.title} to your box`}
         />
         <CategoryList categories={this.props.categories} />
+        <button style={{alignContent: 'left'}} onClick={history.goBack}>Back</button>
+
         <div key={this.props.product.id} className='product'>
           <img src={this.props.product.img}/>
           <h1>{this.props.product.title}</h1>
