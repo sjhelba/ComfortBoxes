@@ -5,6 +5,12 @@
   align-items: center;
   padding-top: 100px;
 
+  .btnGroup {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
   .productList,
   .categoryList {
     display: flex;
@@ -28,9 +34,7 @@
       color: $linkHover;
     }
   }
-  .btnGroup {
-    display: inline;
-  }
+
   .product {
     width: 200px;
     margin: 20px;

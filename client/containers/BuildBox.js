@@ -78,6 +78,25 @@ export class BuildBox extends Component {
     return (
       <div id="buildboxPage">
         <CategoryList current={currentCategory} categories={this.props.categories} />
+        <div className="btnGroup">
+          {prevCategory &&
+            <PrevSidebar prevCategory={prevCategory} />
+          }
+          {nextCategory &&
+            <NextSidebar nextCategory={nextCategory} />
+          }
+        </div>
+        <button onClick={this.openModal}>Add Completed Box to Cart</button>
+        <ProductList categories={this.props.categories} />
+        <button onClick={this.openModal}>Add Completed Box to Cart</button>
+        <div className="btnGroup">
+          {prevCategory &&
+            <PrevSidebar prevCategory={prevCategory} />
+          }
+          {nextCategory &&
+            <NextSidebar nextCategory={nextCategory} />
+          }
+        </div>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -88,25 +107,6 @@ export class BuildBox extends Component {
             <button onClick={() => this.handleCompleteBox('toCart')}>Go to Cart</button>
             <button onClick={this.closeModal}>Oops.. Back to Box</button>
         </Modal>
-        <button onClick={this.openModal}>Add Completed Box to Cart</button>
-        <div className="btnGroup">
-          {prevCategory &&
-            <PrevSidebar prevCategory={prevCategory} />
-          }
-          {nextCategory &&
-            <NextSidebar nextCategory={nextCategory} />
-          }
-        </div>
-        <ProductList categories={this.props.categories} />
-        <div className="btnGroup">
-          {prevCategory &&
-            <PrevSidebar prevCategory={prevCategory} />
-          }
-          {nextCategory &&
-            <NextSidebar nextCategory={nextCategory} />
-          }
-        </div>
-        <button onClick={this.openModal}>Add Completed Box to Cart</button>
       </div>
     );
   }

@@ -12,7 +12,7 @@ export default function CategoryList ({categories, current}) {
     <div id="categoryListPage" className="categoryList">
       {
         categories.map((category, i) => {
-          if (current && current.toLowerCase() === category.title.toLowerCase()) {
+          if (current && current === category.title) {
             currentCategoryDescription = category.description;
             return (
               <Link
