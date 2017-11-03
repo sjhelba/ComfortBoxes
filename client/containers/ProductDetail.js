@@ -53,7 +53,7 @@ export class ProductDetail extends React.Component {
           message={`Successfully added ${this.props.product.title} to your box`}
         />
         <CategoryList categories={this.props.categories} />
-        <button style={{alignContent: 'left'}} onClick={history.goBack}>Back</button>
+        <button onClick={history.goBack}>Back</button>
 
         <div key={this.props.product.id} className='product'>
           <img src={this.props.product.img}/>

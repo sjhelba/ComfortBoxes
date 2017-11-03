@@ -16,7 +16,8 @@ export default function CategoryList ({categories, current}) {
             currentCategoryDescription = category.description;
             return (
               <Link
-                style={{padding: '5px', border: 'solid rgba(128, 128, 128, 0.12)', borderRadius: '10px'}}
+                id="currentCategoryLink"
+                className="categoryLink"
                 key={i}
                 to={`/buildbox/${category.title}`}>
                 {category.title}
@@ -25,7 +26,7 @@ export default function CategoryList ({categories, current}) {
           } else {
             return (
               <Link
-                style={{padding: '5px'}}
+                className="categoryLink"
                 key={i}
                 to={`/buildbox/${category.title}`}>
                 {category.title}

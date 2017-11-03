@@ -9,4 +9,12 @@
     font-size: 16px;
     color: rgb(109, 107, 107);
   }
+
+  .categoryLink {
+    padding: 5px;
+  }
+
+  #currentCategoryLink {
+    border: solid rgba(128, 128, 128, 0.12); border-radius: 10px;
+  }
 }

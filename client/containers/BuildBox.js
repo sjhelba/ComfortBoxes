@@ -24,21 +24,6 @@ import history from '../history'
  *
  */
 
- const customModalStyle = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    fontSize: '18px',
-    lineHeight: '1.6',
-    fontWeight: '400',
-    fontFamily: 'sans-serif'
-  }
-};
-
 
 export class BuildBox extends Component {
   constructor(props) {
@@ -137,3 +122,19 @@ export default connect(
   mapStateToProps,
   {fetchCategories}
 )(BuildBox);
+
+
+const customModalStyle = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    fontSize: '18px',
+    lineHeight: '1.6',
+    fontWeight: '400',
+    fontFamily: 'sans-serif'
+  }
+};
