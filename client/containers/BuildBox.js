@@ -45,14 +45,11 @@ import history from '../history'
 export class BuildBox extends Component {
   constructor(props) {
     super(props)
-    this.completeBox = this.completeBox.bind(this)
-
     this.state = {
       seeModal: false,
       modalIsOpen: false  //test
     }
-
-    //TESTING:
+    this.handleCompleteBox = this.handleCompleteBox.bind(this)
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -62,27 +59,25 @@ export class BuildBox extends Component {
     this.props.fetchCategories();
   }
 
-  completeBox (redirectTo) {
-    // this.setState({seeModal: true});
-    // IN BTWN
-    const tempCart = getCopyOfTempShoppingCart();
-    const current = localStorage.getItem('currentBoxId')
-    if (tempCart[current]) {
-      completeBox()
-      if (redirectTo === 'toHome') {
-        history.push('/');
-      } else if (redirectTo === 'toCart') {
-        history.push('/cart');
-      }
-    } else {
-      alert('Cannot complete box without a box product selected')
+  handleCompleteBox (redirectTo) {
+    completeBox();
+    if (redirectTo === 'toHome') {
+      history.push('/');
+    } else if (redirectTo === 'toCart') {
+      history.push('/cart');
     }
   }
 
 
     //TEST:
   openModal() {
-    this.setState({modalIsOpen: true});
+    const tempCart = getCopyOfTempShoppingCart();
+    const current = localStorage.getItem('currentBoxId');
+    if (tempCart[current]) {
+      this.setState({modalIsOpen: true});
+    } else {
+      alert('Cannot complete box without a box product selected');
+    }
   }
 
   closeModal() {
@@ -92,10 +87,10 @@ export class BuildBox extends Component {
 
   render () {
 
-    const currentCategory = this.props.location.pathname.slice(10)
-    const categoryTitles = this.props.categories.map(cat => cat.title)
-    const nextCategory = categoryTitles[categoryTitles.indexOf(currentCategory) + 1]
-    const prevCategory = categoryTitles[categoryTitles.indexOf(currentCategory) - 1]
+    const currentCategory = this.props.location.pathname.slice(10);
+    const categoryTitles = this.props.categories.map(cat => cat.title);
+    const nextCategory = categoryTitles[categoryTitles.indexOf(currentCategory) + 1];
+    const prevCategory = categoryTitles[categoryTitles.indexOf(currentCategory) - 1];
 
     return (
       <div id="buildboxPage">
@@ -106,8 +101,8 @@ export class BuildBox extends Component {
           style={customModalStyle}
         >
           <div>Add Box to Cart and...</div>
-            <button onClick={() => this.completeBox('toHome')}>Continue Shopping</button>
-            <button onClick={() => this.completeBox('toCart')}>Go to Cart</button>
+            <button onClick={() => this.handleCompleteBox('toHome')}>Continue Shopping</button>
+            <button onClick={() => this.handleCompleteBox('toCart')}>Go to Cart</button>
             <button onClick={this.closeModal}>Oops.. Back to Box</button>
         </Modal>
         <button onClick={this.openModal}>Add Completed Box to Cart</button>
