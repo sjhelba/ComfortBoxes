@@ -28,7 +28,8 @@ export class ProductDetail extends React.Component {
     const currentBox = localStorage.getItem('currentBoxId')
     const categoryTitle = this.props.product.categories[0].title
     if (shoppingCart[currentBox] && categoryTitle === 'Box'){
-      alert('Only one box per box!')
+      alert('Only one box type can be selected per box!');
+      history.push('/buildbox/Sight');
     } else if ((shoppingCart[currentBox] && shoppingCart[currentBox].length <= 10) || categoryTitle === 'Box') {
       addProductToBox(event.target.name)
       this.setState({showSuccessNotification: true});
@@ -36,9 +37,10 @@ export class ProductDetail extends React.Component {
         this.setState({showSuccessNotification: false});
       }, 3000);
     } else if (shoppingCart[currentBox] && shoppingCart[currentBox].length > 10) {
-        alert('Only 10 items may be selected per box (excluding box itself). Create another box in order to select more items!')
+        alert('Only 10 items may be selected per box (excluding box itself). Add current box to cart and then create another box in order to select more items!')
     } else {
       alert('Must select a box before other items!');
+      history.push('/buildbox/Box');
     }
   }
 

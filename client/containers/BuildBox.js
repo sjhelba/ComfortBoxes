@@ -24,8 +24,6 @@ import history from '../history'
  *
  */
 
-
- //TESTING:
  const customModalStyle = {
   content: {
     top: '50%',
@@ -68,15 +66,15 @@ export class BuildBox extends Component {
     }
   }
 
-
-    //TEST:
   openModal() {
     const tempCart = getCopyOfTempShoppingCart();
     const current = localStorage.getItem('currentBoxId');
     if (tempCart[current]) {
       this.setState({modalIsOpen: true});
     } else {
-      alert('Cannot complete box without a box product selected');
+      // redirects user to box category so that they can more easily access box product to select
+      history.push('/buildbox/Box')
+      alert('Please select a box type before adding completed box to cart');
     }
   }
 
