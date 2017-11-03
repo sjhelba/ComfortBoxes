@@ -9,7 +9,7 @@ export default function CategoryList ({categories, current}) {
   let currentCategoryDescription;
 
   return (
-    <div style={{marginTop: '10px', marginBottom: '50px'}} className='categoryList'>
+    <div id="categoryListPage" className="categoryList">
       {
         categories.map((category, i) => {
           if (current && current.toLowerCase() === category.title.toLowerCase()) {
