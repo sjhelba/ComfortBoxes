@@ -1,3 +1,10 @@
+/*
+  Given localStorage only storing strings, this file exports
+  methods for reading and managing the localStoage- stored data
+  in the JS data structures that are utilized elsewhere in the app
+  that are more intuitive for the structure of that data.
+*/
+
 module.exports = {
   createBoxInShoppingCart,
   removeBoxFromShoppingCart,
